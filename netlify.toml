@@ -1,0 +1,22 @@
+# https://me.sap.com/notes/3145706
+# https://dev.to/mannuelf/content-security-policy-on-netlify-guide-4p0c
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-XSS-Protection = "0"
+    Access-Control-Allow-Origin = "*"
+#    Content-Security-Policy = "default-src 'self' cloudfront.net *.cloudfront.net app.contentful.com *.app.contentful.com plasmic.app *.plasmic.app api.ccxfchlhqb-techmates1-d1-public.model-t.cc.commerce.ondemand.com; frame-ancestors 'self' api.ccxfchlhqb-techmates1-d1-public.model-t.cc.commerce.ondemand.com; form-action 'self'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+  # optional, deploy the lighthouse report to a path under your site
+  [plugins.inputs.audits]
+    output_path = "reports/lighthouse.html"
+
